@@ -1,0 +1,190 @@
+Dado os 2 cenários abaixo, escreva seu respectivo script de teste na linguagem Java/Ruby ou outra que tenha conhecimento. Crie o projeto no seu próprio GIT e disponibilize para nós.
+
+/
+
+➡️ Cenário 1:
+• Acesse o site da Verity - verity.com.br
+• Realize a validação dos títulos abaixo para garantir que esses elementos serão encontrados:
+o Somos Verity_
+o Nossos clientes_
+
+🖊
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class VerityHomePageTest {
+
+    public static void main(String[] args) {
+        Configurando o caminho para o driver do Chrome
+        System.setProperty("webdriver.chrome.driver", "caminho/para/chromedriver");
+
+        Inicializando o WebDriver do Chrome
+        WebDriver driver = new ChromeDriver();
+
+        Navegando para a página inicial do site da Verity
+        driver.get("https://www.verity.com.br/");
+
+⚠️ Validação dos Títulos:
+
+WebElementSomosVerity = driver.findElement(By.CssSelector
+"#comp-lhp9lfxc1 > h2")
+WebElementWebElementNossosclientes = driver.findElement(By.CssSelector "
+#comp-lhp9lfxc1 > h2")
+assertEquals (expected: "Somos Verity_", WebElementSomosVerity)
+assertEquals (expected: "Nossos clientes_", WebElementNossosclientes)
+
+⚠️ Validação dos botões "SAIBA MAIS" em Somos Verity_ (button1) e Nossos clientes_ (button2):
+
+        Localizando o primeiro botão na página e verificando se está visível e habilitado
+        WebElement button1 = driver.findElement(By.id("button1"));
+        if (button1.isDisplayed() && button1.isEnabled()) {
+            System.out.println("O botão 1 está visível e habilitado.");
+        } else {
+            System.out.println("O botão 1 não está visível ou habilitado.");
+        }
+
+        Clicando no primeiro botão
+        button1.click();
+
+        Verificando se a ação do botão foi executada corretamente
+        (Verificando imagem com detalhamento dos clientes da Verity divididos em 5 categorias: Services, Others, Industry, Retail e Financial)
+
+        Localizando o segundo botão na página e verificando se está visível e habilitado
+        WebElement button2 = driver.findElement(By.id("button2"));
+        if (button2.isDisplayed() && button2.isEnabled()) {
+            System.out.println("O botão 2 está visível e habilitado.");
+        } else {
+            System.out.println("O botão 2 não está visível ou habilitado.");
+        }
+
+        Clicando no segundo botão
+        button2.click();
+
+        Verificando se a ação do botão foi executada corretamente
+        (Verificando imagem com detalhamento dos clientes da Verity divididos em 5 categorias: Services, Others, Industry, Retail e Financial)
+
+        Fechando o navegador
+        driver.quit();
+    }
+}
+
+⚠️ Validação do botão fechar "X" no menu "SAIBA MAIS":
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class VeritySaibaMaisTest {
+
+    public static void main(String[] args) {
+        Configurando o caminho para o driver do Chrome
+        System.setProperty("webdriver.chrome.driver", "caminho/para/chromedriver");
+
+        Inicializando o WebDriver do Chrome
+        WebDriver driver = new ChromeDriver();
+
+        Navegando para a página inicial do site da Verity
+        driver.get("https://www.verity.com.br");
+
+        Clicando no menu "SAIBA MAIS"
+        WebElement saibaMaisMenu = driver.findElement(By.linkText("SAIBA MAIS"));
+        saibaMaisMenu.click();
+
+        Verificando se a imagem foi exibida corretamente
+        if (driver.findElement(By.id("imagem-saiba-mais")).isDisplayed()) {
+            System.out.println("Imagem de 'SAIBA MAIS' foi exibida corretamente.");
+        } else {
+            System.out.println("Falha ao exibir a imagem de 'SAIBA MAIS'.");
+        }
+
+        Clicando no botão de fechar "X"
+        WebElement fecharButton = driver.findElement(By.id("fechar-saiba-mais"));
+        fecharButton.click();
+
+        Verificando se a imagem foi fechada corretamente
+        if (driver.findElements(By.id("imagem-saiba-mais")).size() == 0) {
+            System.out.println("Imagem de 'SAIBA MAIS' foi fechada corretamente.");
+        } else {
+            System.out.println("Falha ao fechar a imagem de 'SAIBA MAIS'.");
+        }
+
+        Verificando se o usuário retornou para a tela anterior
+        if (driver.getTitle().equals("Página Inicial - Verity")) {
+            System.out.println("Usuário retornou para a tela anterior corretamente.");
+        } else {
+            System.out.println("Falha ao retornar para a tela anterior.");
+        }
+
+        Fechando o navegador
+        driver.quit();
+    }
+}
+
+➡️ Cenário 2:
+• Acesse o site da Verity - verity.com.br
+• Click no Menu “Contato”, sessão “Vamos Conversar”
+• Preencher nesta tela os seguintes campos (preferencialmente com seus dados pessoais):
+▪ Nome
+▪ Email
+▪ Telefone /Celular
+▪ Nos conte o seu desafio
+▪ Clicar no checkbox “Aceito receber mensagens da Verity”;
+▪ Clicar no botão [Enviar]
+
+🖊
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class VerityContactFormTest {
+
+    public static void main(String[] args) {
+        Configurando o caminho para o driver do Chrome
+        System.setProperty("webdriver.chrome.driver", "caminho/para/chromedriver");
+
+        Inicializando o WebDriver do Chrome
+        WebDriver driver = new ChromeDriver();
+
+        Navegando para a página inicial do site da Verity
+        driver.get("https://www.verity.com.br/");
+
+        Clicando no menu "Contato"
+        WebElement contatoMenu = driver.findElement(By.linkText("Contato"));
+        contatoMenu.click();
+
+        Verificando se a página de contato foi carregada
+        if (driver.getTitle().equals("Contato - Verity")) {
+            System.out.println("Página de contato foi carregada corretamente.");
+        } else {
+            System.out.println("Falha ao carregar a página de contato.");
+        }
+
+        Localizando os campos do formulário de contato
+        WebElement nomeInput = driver.findElement(By.id("Nome"));
+        WebElement emailInput = driver.findElement(By.id("Email"));
+        WebElement telefoneInput = driver.findElement(By.id("Telefone /Celular"));
+        WebElement desafioTextArea = driver.findElement(By.id("Nos conte o seu desafio"));
+        WebElement aceitoCheckbox = driver.findElement(By.id("Aceito receber mensagens da Verity"));
+        WebElement enviarButton = driver.findElement(By.id("Enviar"));
+
+        Preenchendo os campos do formulário
+NomeInput.sendKeys("Murilo Gonçalves Munhoz"); EmailInput.sendKeys("murilogoncalves_munhoz@hotmail.com");
+Telefone /CelularInput.sendKeys("(11) 94346-3280");
+Nos conte o seu desafioTextArea.sendKeys("Impactar clientes positivamente e construir pilares sólidos e bem alicerçados em conjunto com a empresa.");
+Aceito receber mensagens da VerityCheckbox.click();
+
+        Enviando o formulário
+        enviarButton.click();
+
+        Verificando se o formulário foi enviado corretamente (Verificando se uma mensagem de sucesso é exibida "Obrigado!" em cor verde no rodapé do formulário ou se um email de confirmação é enviado)
+
+        Fechando o navegador
+        driver.quit();
+    }
+}
